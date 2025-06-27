@@ -1,0 +1,13 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><head><title>oauth2/idpresponse</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<div style="page-break-before:always; page-break-after:always"><div><p>&lt;!DOCTYPE html&gt; <br/>&lt;html lang=&quot;en&quot;&gt; <br/>&lt;head&gt; <br/>  &lt;meta charset=&quot;UTF-8&quot; /&gt; <br/>  &lt;title&gt;Authentication Redirect&lt;/title&gt; <br/>  &lt;style&gt; <br/>    body { <br/>      font-family: sans-serif; <br/>      text-align: center; <br/>      margin-top: 5rem; <br/>      color: #333; <br/>    } <br/>    .status { <br/>      font-size: 1.2rem; <br/>      margin-top: 1rem; <br/>    } <br/>  &lt;/style&gt; <br/>&lt;/head&gt; <br/>&lt;body&gt; <br/>  &lt;h1&gt;Welcome Back!&lt;/h1&gt; <br/>  &lt;p class=&quot;status&quot;&gt;Finalizing secure login, please wait...&lt;/p&gt; <br/> <br/>  &lt;script&gt; <br/>    (function() { <br/>      const hash = window.location.hash.substr(1); <br/>      const params = new URLSearchParams(hash); <br/> <br/>      const idToken = params.get(&quot;id_token&quot;); <br/>      const accessToken = params.get(&quot;access_token&quot;); <br/>      const expiresIn = params.get(&quot;expires_in&quot;); <br/>      const tokenType = params.get(&quot;token_type&quot;); <br/> <br/>      if (idToken &amp;&amp; accessToken) { <br/>        localStorage.setItem(&quot;idToken&quot;, idToken); <br/>        localStorage.setItem(&quot;accessToken&quot;, accessToken); <br/>        localStorage.setItem(&quot;tokenType&quot;, tokenType); <br/>        localStorage.setItem(&quot;expiresIn&quot;, expiresIn); <br/> <br/>        document.querySelector(&quot;.status&quot;).textContent = &quot;&#9989; Secure token saved. You may now <br/>return to the app.&quot;; <br/>        console.log(&quot;ID Token:&quot;, idToken); <br/>      } else { <br/>        document.querySelector(&quot;.status&quot;).textContent = &quot;&#9888;&#65039; Token not found. Please try logging in <br/>again.&quot;; </p>
+
+</div></div>
+<div style="page-break-before:always; page-break-after:always"><div><p>      } <br/>    })(); <br/>  &lt;/script&gt; <br/>&lt;/body&gt; <br/>&lt;/html&gt; <br/> <br/> </p>
+
+</div></div>
+</body></html>
