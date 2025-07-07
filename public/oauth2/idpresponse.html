@@ -1,49 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Authentication Redirect</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      margin-top: 5rem;
-      color: #333;
-    }
-    .status {
-      font-size: 1.2rem;
-      margin-top: 1rem;
-    }
-  </style>
-</head>
-<body>
-  <h1>Welcome Back!</h1>
-  <p class="status">Finalizing secure login, please wait...</p>
-
-  <script>
-    (function() {
-      const hash = window.location.hash.substr(1);
-      const params = new URLSearchParams(hash);
-
-      const idToken = params.get("id_token");
-      const accessToken = params.get("access_token");
-      const expiresIn = params.get("expires_in");
-      const tokenType = params.get("token_type");
-
-      if (idToken && accessToken) {
-        localStorage.setItem("idToken", idToken);
-        localStorage.setItem("accessToken", accessToken);
-        localStorage.setItem("tokenType", tokenType);
-        localStorage.setItem("expiresIn", expiresIn);
-
-        document.querySelector(".status").textContent = "✅ Secure token saved. You may now return to the app.";
-        console.log("ID Token:", idToken);
+<html>
+  <head><title>OAuth Redirect</title></head>
+  <body>
+    <h1>Welcome Back!</h1>
+    <script>
+      const hash = window.location.hash.substring(1);
+      const result = {};
+      hash.split("&").forEach(part => {
+        const [key, value] = part.split("=");
+        result[key] = decodeURIComponent(value);
+      });
+      if (result.id_token) {
+        localStorage.setItem("idToken", result.id_token);
+        document.body.innerHTML += "<p>✅ Secure token saved. You may now return to the app.</p>";
+        console.log("ID Token:", result.id_token);
       } else {
-        document.querySelector(".status").textContent = "⚠️ Token not found. Please try logging in again.";
+        document.body.innerHTML += "<p style='color:red;'>⚠️ Token not found. Please try logging in again.</p>";
       }
-    })();
-  </script>
-</body>
+    </script>
+  </body>
 </html>
 
 
